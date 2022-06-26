@@ -1,0 +1,11 @@
+# POST http://127.0.0.1:8000/api/users
+# Content-Type: application/json
+
+# {
+#     "name": "Sarah Ocran",
+#     "email": "ocransarah@gmail.com",
+#     "password":"123456789"
+# }
+
+
+GET http://127.0.0.1:8000/api/users/2
