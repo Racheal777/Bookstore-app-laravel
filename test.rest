@@ -1,11 +1,22 @@
-# POST http://127.0.0.1:8000/api/users
+# POST http://127.0.0.1:8000/api/books
 # Content-Type: application/json
 
 # {
-#     "name": "Sarah Ocran",
-#     "email": "ocransarah@gmail.com",
+#     "name": "Selina Osei",
+#     "email": "oseiselina55@gmail.com",
 #     "password":"123456789"
 # }
 
 
-GET http://127.0.0.1:8000/api/users/2
+POST http://127.0.0.1:8000/api/books
+Content-Type: application/json
+
+{
+    "title": "Eat that frog",
+    "author": "Tracy Brian",
+    "genre":  "motivation",
+    "published": "True"
+}
+
+
+//GET http://127.0.0.1:8000/api/books
