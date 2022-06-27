@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookCollection;
+use App\Http\Resources\BookResource;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Psy\Readline\Hoa\Console;
@@ -18,9 +21,25 @@ class BookController extends Controller
     public function index()
     {
         //
-        $book = Book::all();
+        // $book = Book::all();
 
-        return $book;
+        //query
+        // $book = Book::
+        // where('published', true)
+        // ->where('author', 'Abigail Gold')
+        // ->where('genre', 'Health')
+        // ->get();
+
+        $book = Book::
+        where([
+            ['published', false], 
+            ['author', 'Abigail Gold']
+        ])
+        ->get();
+
+        // return BookResource::collection($book);
+
+        return new BookCollection($book);
     }
 
     /**
@@ -31,17 +50,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        // return "hello";
+        
         $book = new Book();
         $book->title = $request->input('title');
         $book->author = $request->input('author');
         $book->genre = $request->input('genre');
         $book->published = $request->input('published');
+        $book->user_id = $request->input('user_id');
         $book->save();
         
-        return $book;
+        return  new BookResource($book) ;
 
         // $user = new User();
         // $user->name = $request->input('name');

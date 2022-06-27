@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -17,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return $user;
+        return new UserCollection($user);
     }
 
     /**
@@ -26,7 +29,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+     //validation with the userrequest
+    public function store(UserRequest $request)
     {
         $user = new User();
         $user->name = $request->input('name');
@@ -34,7 +39,8 @@ class UserController extends Controller
         $user->password = Hash::make($request-> input('password')); 
         $user->save();
 
-        return $user;
+        //what to return
+        return new UserResource($user);
 
         //
     }
@@ -50,7 +56,7 @@ class UserController extends Controller
      //binding the User model to any id that will be passed
      public function show(User $user)
     {
-        return $user;
+        return new UserResource($user);
     }
 
     /**
@@ -60,9 +66,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        // $adata = [
+        //     'middle_name' => ''
+        // ];
+        // $user->update($adata);
+
+        // $updated = [
+        //     'name' => $request->input('name')
+        // ];
+
+        // $user->update($updated);
+        // $user->middle_name = $request->input('name');
+        // $user->save();
+
+        $user->name = $request->input('name');
+        $user->save();
+        //what to return
+        return new UserResource($user);
     }
 
     /**
