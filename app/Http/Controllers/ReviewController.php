@@ -20,7 +20,7 @@ class ReviewController extends Controller
 
         $reviews = Review::all();
 
-        return new ReviewCollections($reviews);
+        return $reviews;
 
     }
 
