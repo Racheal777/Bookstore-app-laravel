@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::apiResource('users', UserController::class);
 
 //book routes
 Route::apiResource('books', BookController::class);
+
+Route::apiResource('reviews', ReviewController::class);

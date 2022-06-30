@@ -17,6 +17,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //find all users
+    //with the usercollection to loop through the user table
     public function index()
     {
         $user = User::all();

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Book;
+use App\Models\Review;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,5 +47,9 @@ class User extends Authenticatable
 
     public function books(){
         return $this->hasMany(Book::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
     }
 }

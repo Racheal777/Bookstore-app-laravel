@@ -32,8 +32,8 @@ class BookController extends Controller
 
         $book = Book::
         where([
-            ['published', false], 
-            ['author', 'Abigail Gold']
+            ['published', true], 
+           
         ])
         ->get();
 
